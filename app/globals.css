@@ -1,26 +1,205 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* PLACEHOLDER palette pending official brand assets from the builder.
+   Chosen for a nature-adjacent family detached community. */
+@theme {
+  --color-brand-primary: #2f4a3a;
+  --color-brand-deep: #1d2f25;
+  --color-brand-accent: #b07a54;
+  --color-brand-accent-ink: #8f5b38;
+  --color-surface: #faf7f0;
+  --color-surface-alt: #efe9db;
+  --color-text-primary: #1b1f1c;
+  --color-text-muted: #5a625c;
+  --color-text-on-dark: #e7e1d6;
+  --color-border: #d9d2c0;
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --container-page: 1200px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    background: var(--color-surface);
+    color: var(--color-text-primary);
+    padding-bottom: 5.75rem;
+  }
+
+  @media (min-width: 768px) {
+    body {
+      padding-bottom: 0;
+    }
+  }
+
+  h1,
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+
+  h3 {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-accent-ink);
+    outline-offset: 3px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.page-wrap {
+  width: min(calc(100% - 2.5rem), var(--container-page));
+  margin-inline: auto;
+}
+
+@media (min-width: 768px) {
+  .page-wrap {
+    width: min(calc(100% - 4rem), var(--container-page));
+  }
+}
+
+.section {
+  padding-block: 3rem;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding-block: 3.5rem;
+  }
+}
+
+.measure {
+  max-width: 68ch;
+}
+
+.card {
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: var(--color-surface);
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-brand-accent-ink);
+}
+
+.fact-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.fact-table th,
+.fact-table td {
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.8rem 0.75rem;
+  vertical-align: top;
+}
+
+.fact-table th {
+  font-weight: 600;
+  width: 38%;
+  color: var(--color-brand-primary);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.75rem 1.25rem;
+  border-radius: 10px;
+  background: var(--color-brand-accent-ink);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.btn:hover {
+  background: var(--color-brand-deep);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-text-on-dark);
+  border: 1px solid var(--color-text-on-dark);
+}
+
+.btn-secondary:hover {
+  background: transparent;
+  color: #fff;
+  border-color: #fff;
+}
+
+.btn-light {
+  background: transparent;
+  color: var(--color-brand-primary);
+  border: 1px solid var(--color-brand-primary);
+}
+
+.btn-light:hover {
+  background: var(--color-brand-primary);
+  color: var(--color-surface);
+}
+
+.prose-link {
+  color: var(--color-brand-primary);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.field {
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: #fff;
+  padding: 0.65rem 0.8rem;
+  color: var(--color-text-primary);
+}
+
+.hp {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+summary {
+  list-style: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+details.faq > summary {
+  cursor: pointer;
+}
+
+details.faq > summary::-webkit-details-marker {
+  display: none;
 }
