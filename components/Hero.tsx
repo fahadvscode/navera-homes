@@ -7,35 +7,38 @@ const [title, subtitle] = PAGES.home.h1.split(" — ");
 
 export function Hero() {
   return (
-    <section className="bg-surface lg:grid lg:grid-cols-[minmax(0,1.25fr)_minmax(22rem,30rem)]">
-      <div className="relative h-72 sm:h-96 lg:h-auto lg:min-h-[40rem]">
-        <Image
-          src="/images/media/aerial-hero.jpg"
-          alt={AERIAL.alt}
-          fill
-          priority
-          unoptimized
-          sizes="(min-width: 1024px) 62vw, 100vw"
-          className="object-cover object-[center_68%]"
-        />
-      </div>
-      <div className="flex flex-col justify-center px-5 py-8 sm:px-8 lg:px-10 lg:py-12">
-        <h1 className="text-balance text-brand-primary">
-          <span className="block font-display text-[2.35rem] leading-[1.02] sm:text-5xl">{title}</span>
-          {subtitle ? (
-            <span className="mt-3 block max-w-[28ch] font-sans text-base font-normal leading-snug text-text-muted">
-              {`— ${subtitle}`}
+    <section className="relative isolate bg-brand-deep">
+      <Image
+        src="/images/media/aerial-hero.jpg"
+        alt={AERIAL.alt}
+        fill
+        priority
+        unoptimized
+        sizes="100vw"
+        className="object-cover object-[center_62%]"
+      />
+      <div className="absolute inset-0 bg-brand-deep/80 lg:bg-gradient-to-r lg:from-brand-deep/92 lg:via-brand-deep/84 lg:to-brand-deep/72" />
+      <div className="page-wrap relative grid items-center gap-8 py-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(20rem,26rem)] lg:gap-12 lg:py-16">
+        <div>
+          <h1 className="text-balance text-surface">
+            <span className="block font-display text-[2.35rem] leading-[1.02] sm:text-5xl lg:text-6xl">
+              {title}
             </span>
-          ) : null}
-        </h1>
-        <p className="mt-4 max-w-[36ch] text-sm leading-relaxed text-text-muted">
-          Coming this fall from Digreen Homes, at Countryside Drive and Torbram Road. Registration
-          is free and does not reserve a home.{" "}
-          <a href="#quick-facts" className="prose-link">
-            See what is confirmed
-          </a>
-        </p>
-        <div className="mt-6">
+            {subtitle ? (
+              <span className="mt-3 block max-w-[24ch] font-sans text-base font-normal leading-snug text-text-on-dark lg:text-lg">
+                {`— ${subtitle}`}
+              </span>
+            ) : null}
+          </h1>
+          <p className="mt-4 max-w-[38ch] text-sm leading-relaxed text-text-on-dark lg:text-base">
+            Coming this fall from Digreen Homes, at Countryside Drive and Torbram Road. Registration
+            is free and does not reserve a home.{" "}
+            <a href="#quick-facts" className="font-semibold text-surface underline underline-offset-4">
+              See what is confirmed
+            </a>
+          </p>
+        </div>
+        <div className="hero-on-photo">
           <LeadForm variant="hero" location="hero" />
         </div>
       </div>

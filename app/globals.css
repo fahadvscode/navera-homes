@@ -201,6 +201,20 @@
   padding-inline: 0;
 }
 
+.hero-on-photo {
+  color: var(--color-text-on-dark);
+}
+
+.hero-on-photo .field-line {
+  color: var(--color-text-on-dark);
+  caret-color: var(--color-text-on-dark);
+  border-bottom-color: rgb(231 225 214 / 0.7);
+}
+
+.hero-on-photo p {
+  color: var(--color-text-on-dark);
+}
+
 ::selection {
   background: var(--color-brand-primary);
   color: var(--color-surface);
