@@ -141,8 +141,8 @@ export function LeadForm({
   const stacked = variant === "hero";
 
   return (
-    <form onSubmit={onSubmit} onFocus={onFocus} noValidate className="relative grid gap-4">
-      <div className={stacked ? "grid gap-4" : "grid gap-4 md:grid-cols-2"}>
+    <form onSubmit={onSubmit} onFocus={onFocus} noValidate className={stacked ? "relative grid gap-3" : "relative grid gap-4"}>
+      <div className={stacked ? "grid grid-cols-2 gap-x-3 gap-y-3" : "grid gap-4 md:grid-cols-2"}>
         <Field label="First name" id={`${baseId}-first`} error={errors.first_name && "Enter your first name."}>
           <input id={`${baseId}-first`} className="field" autoComplete="given-name" {...register("first_name")} />
         </Field>
