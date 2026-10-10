@@ -14,7 +14,7 @@ export default function ThankYouPage() {
       <ThankYouEvent />
       <section className="section">
         <div className="page-wrap py-10">
-          <h1 className="max-w-[16ch] font-display text-4xl text-brand-primary md:text-5xl">
+          <h1 className="max-w-[16ch] font-display text-3xl text-brand-primary md:text-5xl">
             {PAGES.thankYou.h1}
           </h1>
           <p className="measure mt-6 text-lg leading-[1.7]">

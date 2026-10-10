@@ -4,7 +4,7 @@ import { AREA_ICON_LINKS, MEDIA } from "@/lib/media";
 
 export function AreaIcons() {
   return (
-    <section className="relative overflow-hidden" aria-label="Nearby categories">
+    <section className="relative overflow-hidden bg-pattern" aria-label="Nearby categories">
       <Image
         src={MEDIA.pattern}
         alt=""

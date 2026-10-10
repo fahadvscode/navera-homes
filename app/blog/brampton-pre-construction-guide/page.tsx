@@ -28,7 +28,7 @@ export default function BlogPage() {
       <header className="bg-brand-deep text-surface">
         <div className="page-wrap py-14 md:py-20">
           <Breadcrumbs current="Buyer's guide" />
-          <h1 className="mt-4 max-w-[20ch] font-display text-4xl text-surface md:text-5xl">{PAGES.blog.h1}</h1>
+          <h1 className="mt-4 max-w-[20ch] font-display text-3xl text-surface md:text-5xl">{PAGES.blog.h1}</h1>
           <p className="measure mt-6 text-lg leading-relaxed text-text-on-dark">{BLOG_LEDE}</p>
         </div>
       </header>

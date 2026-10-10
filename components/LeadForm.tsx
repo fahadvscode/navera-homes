@@ -39,7 +39,7 @@ export function LeadForm({
   variant = "full",
   location = "page",
 }: {
-  variant?: "full" | "compact";
+  variant?: "full" | "compact" | "hero";
   location?: string;
 }) {
   const router = useRouter();
@@ -48,6 +48,7 @@ export function LeadForm({
   const baseId = useId();
   const [formError, setFormError] = useState("");
   const [pending, setPending] = useState(false);
+  const [brokerAnswer, setBrokerAnswer] = useState<"" | "yes" | "no">("");
 
   const {
     register,
@@ -121,6 +122,11 @@ export function LeadForm({
       setFormError("Please take a moment to review the form before submitting.");
       return;
     }
+    if (variant === "hero" && brokerAnswer === "") {
+      setFormError("Select yes or no for the broker question.");
+      return;
+    }
+    if (variant === "hero") setValue("is_broker", brokerAnswer === "yes");
     const utm = readUtm();
     setValue("elapsed_ms", elapsed);
     setValue("consent_page", window.location.pathname.slice(0, 200));
@@ -132,11 +138,11 @@ export function LeadForm({
     void handleSubmit(onValid)();
   }
 
-  const compact = variant === "compact";
+  const stacked = variant === "hero";
 
   return (
     <form onSubmit={onSubmit} onFocus={onFocus} noValidate className="relative grid gap-4">
-      <div className={compact ? "grid gap-4 md:grid-cols-2" : "grid gap-4 md:grid-cols-2"}>
+      <div className={stacked ? "grid gap-4" : "grid gap-4 md:grid-cols-2"}>
         <Field label="First name" id={`${baseId}-first`} error={errors.first_name && "Enter your first name."}>
           <input id={`${baseId}-first`} className="field" autoComplete="given-name" {...register("first_name")} />
         </Field>
@@ -153,15 +159,47 @@ export function LeadForm({
         >
           <input id={`${baseId}-phone`} className="field" type="tel" autoComplete="tel" {...register("phone")} />
         </Field>
-        <Select label="Home type interest" id={`${baseId}-home`} options={HOME_TYPES} {...register("home_type_interest")} />
-        <Select label="Budget range" id={`${baseId}-budget`} options={BUDGETS} {...register("budget_range")} />
-        <Select label="Buyer type" id={`${baseId}-buyer`} options={BUYERS} {...register("buyer_type")} />
-        <Select label="Timeline" id={`${baseId}-timeline`} options={TIMELINES} {...register("timeline")} />
+        {stacked ? null : (
+          <>
+            <Select label="Home type interest" id={`${baseId}-home`} options={HOME_TYPES} {...register("home_type_interest")} />
+            <Select label="Budget range" id={`${baseId}-budget`} options={BUDGETS} {...register("budget_range")} />
+            <Select label="Buyer type" id={`${baseId}-buyer`} options={BUYERS} {...register("buyer_type")} />
+            <Select label="Timeline" id={`${baseId}-timeline`} options={TIMELINES} {...register("timeline")} />
+          </>
+        )}
       </div>
-      <label className="flex items-start gap-3 text-sm leading-relaxed">
-        <input type="checkbox" className="mt-1 h-5 w-5" {...register("is_broker")} />
-        <span>Are you a licensed real estate agent?</span>
-      </label>
+      {stacked ? (
+        <fieldset>
+          <legend className="text-sm font-semibold">Are you a licensed real estate agent?</legend>
+          <div className="mt-2 flex gap-6">
+            <label className="flex items-center gap-2 text-sm">
+              <input
+                type="radio"
+                name={`${baseId}-broker`}
+                className="h-5 w-5"
+                checked={brokerAnswer === "yes"}
+                onChange={() => setBrokerAnswer("yes")}
+              />
+              Yes
+            </label>
+            <label className="flex items-center gap-2 text-sm">
+              <input
+                type="radio"
+                name={`${baseId}-broker`}
+                className="h-5 w-5"
+                checked={brokerAnswer === "no"}
+                onChange={() => setBrokerAnswer("no")}
+              />
+              No
+            </label>
+          </div>
+        </fieldset>
+      ) : (
+        <label className="flex items-start gap-3 text-sm leading-relaxed">
+          <input type="checkbox" className="mt-1 h-5 w-5" {...register("is_broker")} />
+          <span>Are you a licensed real estate agent?</span>
+        </label>
+      )}
       <label className="flex items-start gap-3 text-sm leading-relaxed">
         <input type="checkbox" className="mt-1 h-5 w-5" {...register("casl_consent")} />
         <span>{CASL_CONSENT}</span>
@@ -173,7 +211,7 @@ export function LeadForm({
         <label htmlFor={`${baseId}-website`}>Website</label>
         <input id={`${baseId}-website`} tabIndex={-1} autoComplete="off" {...register("website")} />
       </div>
-      <button type="submit" className="btn w-full md:w-auto" disabled={pending}>
+      <button type="submit" className={stacked ? "btn w-full" : "btn w-full md:w-auto"} disabled={pending}>
         {pending ? "Sending…" : "Get Priority Access"}
       </button>
       <p role="alert" aria-live="assertive" className="min-h-6 text-sm font-semibold text-brand-deep">

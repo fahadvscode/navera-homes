@@ -7,7 +7,7 @@ export function LocationSchematic({ title }: { title: string }) {
         height="360"
         role="img"
         aria-labelledby="loc-title loc-desc"
-        className="h-auto w-full"
+        className="h-auto w-full max-w-full"
       >
         <title id="loc-title">{title}</title>
         <desc id="loc-desc">

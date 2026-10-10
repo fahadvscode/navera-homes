@@ -38,7 +38,7 @@ export default function PricingPage() {
       <header className="bg-brand-deep text-surface">
         <div className="page-wrap py-14 md:py-20">
           <Breadcrumbs current="Pricing" />
-          <h1 className="mt-4 max-w-[16ch] font-display text-4xl text-surface md:text-5xl">
+          <h1 className="mt-4 max-w-[16ch] font-display text-3xl text-surface md:text-5xl">
             {PAGES.pricing.h1}
           </h1>
           <p className="measure mt-6 text-lg leading-relaxed text-text-on-dark">{FAQS[3].a}</p>

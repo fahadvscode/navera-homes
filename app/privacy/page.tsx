@@ -26,7 +26,7 @@ export default function PrivacyPage() {
       <header className="bg-brand-deep text-surface">
         <div className="page-wrap py-14 md:py-20">
           <Breadcrumbs current="Privacy" />
-          <h1 className="mt-4 font-display text-4xl text-surface md:text-5xl">{PAGES.privacy.h1}</h1>
+          <h1 className="mt-4 font-display text-3xl text-surface md:text-5xl">{PAGES.privacy.h1}</h1>
         </div>
       </header>
       <section className="section">

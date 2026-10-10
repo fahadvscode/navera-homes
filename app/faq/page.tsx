@@ -24,7 +24,7 @@ export default function FaqPage() {
       <header className="bg-brand-deep text-surface">
         <div className="page-wrap py-14 md:py-20">
           <Breadcrumbs current="FAQ" />
-          <h1 className="mt-4 max-w-[18ch] font-display text-4xl text-surface md:text-5xl">{PAGES.faq.h1}</h1>
+          <h1 className="mt-4 max-w-[18ch] font-display text-3xl text-surface md:text-5xl">{PAGES.faq.h1}</h1>
           <p className="mt-6 text-sm font-semibold uppercase tracking-[0.14em] text-text-on-dark">
             Last updated: {DISPLAY_DATE}
           </p>

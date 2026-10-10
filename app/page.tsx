@@ -178,17 +178,17 @@ export default function HomePage() {
               alt="Digreen Homes"
               width={896}
               height={331}
-              className="h-16 w-auto"
+              className="h-auto max-h-12 w-auto max-w-full sm:max-h-16"
             />
             <Image
               src={MEDIA.digreenStacked}
               alt=""
               width={236}
               height={261}
-              className="h-16 w-auto"
+              className="h-12 w-auto sm:h-16"
             />
-            <span className="inline-flex bg-brand-deep p-3">
-              <img src={MEDIA.digreenMark} alt="" width={48} height={52} className="h-12 w-auto" />
+            <span className="inline-flex bg-brand-deep p-2 sm:p-3">
+              <img src={MEDIA.digreenMark} alt="" width={48} height={52} className="h-10 w-auto sm:h-12" />
             </span>
           </div>
           <p className="mt-3 text-sm text-text-muted">

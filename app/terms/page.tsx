@@ -26,7 +26,7 @@ export default function TermsPage() {
       <header className="bg-brand-deep text-surface">
         <div className="page-wrap py-14 md:py-20">
           <Breadcrumbs current="Terms" />
-          <h1 className="mt-4 font-display text-4xl text-surface md:text-5xl">{PAGES.terms.h1}</h1>
+          <h1 className="mt-4 font-display text-3xl text-surface md:text-5xl">{PAGES.terms.h1}</h1>
         </div>
       </header>
       <section className="section">

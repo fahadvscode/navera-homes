@@ -25,7 +25,7 @@ export default function RegisterPage() {
       <header className="bg-brand-deep text-surface">
         <div className="page-wrap py-14 md:py-16">
           <Breadcrumbs current="Register" />
-          <h1 className="mt-4 max-w-[18ch] font-display text-4xl text-surface md:text-5xl">
+          <h1 className="mt-4 max-w-[18ch] font-display text-3xl text-surface md:text-5xl">
             {PAGES.register.h1}
           </h1>
         </div>

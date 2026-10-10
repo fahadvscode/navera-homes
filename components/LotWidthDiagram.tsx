@@ -7,7 +7,7 @@ export function LotWidthDiagram({ title }: { title: string }) {
         height="280"
         role="img"
         aria-labelledby="lot-title lot-desc"
-        className="h-auto w-full"
+        className="h-auto w-full max-w-full"
       >
         <title id="lot-title">{title}</title>
         <desc id="lot-desc">
