@@ -39,7 +39,7 @@ export function Hero() {
             </a>
           </p>
         </div>
-        <div className="hero-on-photo">
+        <div className="hero-on-photo rounded-xl bg-brand-deep/80 px-3.5 py-3.5 sm:px-4">
           <LeadForm variant="hero" location="hero" />
         </div>
       </div>

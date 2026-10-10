@@ -8,11 +8,7 @@ export const leadSchema = z.object({
     .string()
     .trim()
     .regex(/^[+()\-.\s\d]{10,20}$/),
-  home_type_interest: z.string().max(60).optional(),
-  budget_range: z.string().max(60).optional(),
-  buyer_type: z.string().max(60).optional(),
-  timeline: z.string().max(60).optional(),
-  is_broker: z.boolean().default(false),
+  is_broker: z.boolean(),
   casl_consent: z.literal(true),
   website: z.string().max(0).optional(),
   elapsed_ms: z.number().min(3000),

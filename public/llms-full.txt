@@ -129,7 +129,7 @@ No. Navera at Mayfield Village is a Digreen Homes community at Countryside Drive
 
 # Navera at Mayfield Village Gallery
 
-Official renderings and the site plan have not been published on this independent site. We add them as soon as the builder releases them.
+The area illustration and photographs on this page come from Digreen Homes' Navera artwork. Lifestyle pictures are not photographs of a Navera home. Floor plans and a surveyed site plan are still to be announced.
 
 ## FAQ
 
@@ -271,11 +271,11 @@ This policy describes the independent Navera at Mayfield Village registration si
 
 ## What is collected
 
-The registration form collects your first name, last name, email address, and phone number. It also collects optional answers: home-type interest, budget range, buyer type, and timeline. A checkbox records whether you are a licensed real estate agent. The form stores your express consent, the time consent was given, and the page path where you submitted it. If the address you arrived from included campaign parameters, the form stores utm_source, utm_medium, utm_campaign, utm_term, and utm_content.
+The registration form collects your first name, last name, email address, and phone number, and a yes or no answer for whether you are a licensed real estate agent. The form stores your express consent, the time consent was given, and the page path where you submitted it. If the address you arrived from included campaign parameters, the form stores utm_source, utm_medium, utm_campaign, utm_term, and utm_content.
 
 ## Why it is collected
 
-The VIP Registration Team uses these details to send project updates about Navera at Mayfield Village and to respond to your registration. The agent checkbox is used only so broker enquiries can be handled in line with the builder's process. Campaign parameters show which page or campaign led to the registration. You will not be added to a list unless you check the consent box.
+The VIP Registration Team uses these details to send project updates about Navera at Mayfield Village and to respond to your registration. The yes or no answer is used only so broker enquiries can be handled in line with the builder's process. Campaign parameters show which page or campaign led to the registration. You will not be added to a list unless you check the consent box.
 
 ## Who processes it
 
@@ -299,7 +299,7 @@ The Personal Information Protection and Electronic Documents Act applies to comm
 
 ## CASL
 
-Canada's anti-spam law requires express or valid implied consent before commercial electronic messages are sent. The consent box on the registration form is unchecked until you check it. The wording states that you can withdraw consent at any time by using the unsubscribe link in any message. Withdrawing consent stops further marketing messages. It does not erase a record by itself; use the privacy mailbox to ask for deletion.
+Canada's anti-spam law requires express or valid implied consent before commercial electronic messages are sent. The consent box on the registration form is unchecked until you check it. The wording is: I agree to emails about Navera at Mayfield Village. Unsubscribe anytime. Withdrawing consent stops further marketing messages. It does not erase a record by itself; use the privacy mailbox to ask for deletion.
 
 ## Accessibility
 

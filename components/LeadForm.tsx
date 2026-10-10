@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { useEffect, useId, useRef, useState, type FormEvent, type ReactNode, type SelectHTMLAttributes } from "react";
+import { useEffect, useId, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { useForm, type Resolver } from "react-hook-form";
 import { CASL_CONSENT } from "@/lib/consent";
 import { leadSchema } from "@/lib/lead-schema";
@@ -14,10 +14,6 @@ type FormValues = {
   last_name: string;
   email: string;
   phone: string;
-  home_type_interest?: string;
-  budget_range?: string;
-  buyer_type?: string;
-  timeline?: string;
   is_broker: boolean;
   casl_consent: boolean;
   website?: string;
@@ -29,11 +25,6 @@ type FormValues = {
   utm_term?: string | null;
   utm_content?: string | null;
 };
-
-const HOME_TYPES = ["38' series", "41' series", "Not sure yet"];
-const BUDGETS = ["Under $1.0M", "$1.0M–$1.1M", "$1.1M–$1.25M", "$1.25M+", "Prefer not to say"];
-const BUYERS = ["End user / family", "Investor", "Other"];
-const TIMELINES = ["Ready now", "0–3 months", "3–6 months", "6–12 months", "Just exploring"];
 
 export function LeadForm({
   variant = "full",
@@ -62,10 +53,6 @@ export function LeadForm({
       last_name: "",
       email: "",
       phone: "",
-      home_type_interest: "",
-      budget_range: "",
-      buyer_type: "",
-      timeline: "",
       is_broker: false,
       casl_consent: false,
       website: "",
@@ -98,10 +85,6 @@ export function LeadForm({
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         ...values,
-        home_type_interest: values.home_type_interest || undefined,
-        budget_range: values.budget_range || undefined,
-        buyer_type: values.buyer_type || undefined,
-        timeline: values.timeline || undefined,
         casl_consent: true,
         website: values.website ?? "",
       }),
@@ -122,11 +105,11 @@ export function LeadForm({
       setFormError("Please take a moment to review the form before submitting.");
       return;
     }
-    if (variant === "hero" && brokerAnswer === "") {
+    if (brokerAnswer === "") {
       setFormError("Select yes or no for the broker question.");
       return;
     }
-    if (variant === "hero") setValue("is_broker", brokerAnswer === "yes");
+    setValue("is_broker", brokerAnswer === "yes");
     const utm = readUtm();
     setValue("elapsed_ms", elapsed);
     setValue("consent_page", window.location.pathname.slice(0, 200));
@@ -165,53 +148,38 @@ export function LeadForm({
         >
           <input id={`${baseId}-phone`} className={fieldClass} type="tel" autoComplete="tel" {...register("phone")} />
         </Field>
-        {stacked ? null : (
-          <>
-            <Select label="Home type interest" id={`${baseId}-home`} options={HOME_TYPES} {...register("home_type_interest")} />
-            <Select label="Budget range" id={`${baseId}-budget`} options={BUDGETS} {...register("budget_range")} />
-            <Select label="Buyer type" id={`${baseId}-buyer`} options={BUYERS} {...register("buyer_type")} />
-            <Select label="Timeline" id={`${baseId}-timeline`} options={TIMELINES} {...register("timeline")} />
-          </>
-        )}
       </div>
-      {stacked ? (
-        <fieldset>
-          <legend className="text-xs font-semibold">Are you a licensed real estate agent?</legend>
-          <div className="mt-1 flex gap-4">
-            <label className="flex items-center gap-1.5 text-xs">
-              <input
-                type="radio"
-                name={`${baseId}-broker`}
-                className="h-3.5 w-3.5"
-                checked={brokerAnswer === "yes"}
-                onChange={() => setBrokerAnswer("yes")}
-              />
-              Yes
-            </label>
-            <label className="flex items-center gap-1.5 text-xs">
-              <input
-                type="radio"
-                name={`${baseId}-broker`}
-                className="h-3.5 w-3.5"
-                checked={brokerAnswer === "no"}
-                onChange={() => setBrokerAnswer("no")}
-              />
-              No
-            </label>
-          </div>
-        </fieldset>
-      ) : (
-        <label className="flex items-start gap-2 text-xs leading-snug">
-          <input type="checkbox" className="mt-0.5 h-3.5 w-3.5 shrink-0" {...register("is_broker")} />
-          <span>Are you a licensed real estate agent?</span>
-        </label>
-      )}
+      <fieldset>
+        <legend className="text-xs font-semibold">Are you a licensed real estate agent?</legend>
+        <div className="mt-1 flex gap-4">
+          <label className="flex items-center gap-1.5 text-xs">
+            <input
+              type="radio"
+              name={`${baseId}-broker`}
+              className="h-3.5 w-3.5"
+              checked={brokerAnswer === "yes"}
+              onChange={() => setBrokerAnswer("yes")}
+            />
+            Yes
+          </label>
+          <label className="flex items-center gap-1.5 text-xs">
+            <input
+              type="radio"
+              name={`${baseId}-broker`}
+              className="h-3.5 w-3.5"
+              checked={brokerAnswer === "no"}
+              onChange={() => setBrokerAnswer("no")}
+            />
+            No
+          </label>
+        </div>
+      </fieldset>
       <label className="flex items-start gap-2 text-[0.7rem] leading-snug">
         <input type="checkbox" className="mt-0.5 h-3.5 w-3.5 shrink-0" {...register("casl_consent")} />
         <span>{CASL_CONSENT}</span>
       </label>
       {errors.casl_consent && (
-        <p className="text-xs font-semibold text-brand-deep">Consent is required to register.</p>
+        <p className="form-alert text-xs font-semibold text-brand-deep">Consent is required to register.</p>
       )}
       <div className="hp" aria-hidden="true">
         <label htmlFor={`${baseId}-website`}>Website</label>
@@ -220,7 +188,7 @@ export function LeadForm({
       <button type="submit" className={stacked ? "btn w-full" : "btn w-full md:w-auto"} disabled={pending}>
         {pending ? "Sending…" : "Get Priority Access"}
       </button>
-      <p role="alert" aria-live="assertive" className="min-h-4 text-xs font-semibold text-brand-deep">
+      <p role="alert" aria-live="assertive" className="form-alert min-h-4 text-xs font-semibold text-brand-deep">
         {formError}
       </p>
     </form>
@@ -245,7 +213,7 @@ function Field({
       </label>
       {children}
       {error && (
-        <p id={`${id}-error`} className="mt-1 text-xs text-brand-deep">
+        <p id={`${id}-error`} className="form-alert mt-1 text-xs text-brand-deep">
           {error}
         </p>
       )}
@@ -253,29 +221,3 @@ function Field({
   );
 }
 
-function Select({
-  label,
-  id,
-  options,
-  ...props
-}: {
-  label: string;
-  id: string;
-  options: string[];
-} & SelectHTMLAttributes<HTMLSelectElement>) {
-  return (
-    <div>
-      <label htmlFor={id} className="mb-0.5 block text-xs font-semibold">
-        {label}
-      </label>
-      <select id={id} className="field" {...props}>
-        <option value="">Select</option>
-        {options.map((option) => (
-          <option key={option} value={option}>
-            {option}
-          </option>
-        ))}
-      </select>
-    </div>
-  );
-}
