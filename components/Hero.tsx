@@ -1,23 +1,24 @@
 import Image from "next/image";
 import { PAGES } from "@/lib/content";
-import { AERIAL } from "@/lib/media";
+import { LIFESTYLE_PHOTOS } from "@/lib/media";
 import { LeadForm } from "./LeadForm";
 
 const [title, subtitle] = PAGES.home.h1.split(" — ");
+const family = LIFESTYLE_PHOTOS[0];
 
 export function Hero() {
   return (
     <section className="relative isolate bg-brand-deep">
       <Image
-        src="/images/media/aerial-hero.jpg"
-        alt={AERIAL.alt}
+        src={family.src}
+        alt={family.alt}
         fill
         priority
         unoptimized
         sizes="100vw"
-        className="object-cover object-[center_62%]"
+        className="object-cover object-[center_40%]"
       />
-      <div className="absolute inset-0 bg-brand-deep/80 lg:bg-gradient-to-r lg:from-brand-deep/92 lg:via-brand-deep/84 lg:to-brand-deep/72" />
+      <div className="absolute inset-0 bg-brand-deep/45 lg:bg-gradient-to-r lg:from-brand-deep/70 lg:via-brand-deep/50 lg:to-brand-deep/40" />
       <div className="page-wrap relative grid items-center gap-8 py-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(20rem,26rem)] lg:gap-12 lg:py-16">
         <div>
           <h1 className="text-balance text-surface">
