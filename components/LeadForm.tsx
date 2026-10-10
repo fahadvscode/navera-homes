@@ -122,7 +122,7 @@ export function LeadForm({
   }
 
   const stacked = variant === "hero";
-  const fieldClass = stacked ? "field field-line" : "field";
+  const fieldClass = "field";
 
   return (
     <form
