@@ -19,7 +19,7 @@ export function Hero() {
         className="object-cover object-[center_40%]"
       />
       <div className="absolute inset-0 bg-brand-deep/45 lg:bg-gradient-to-r lg:from-brand-deep/70 lg:via-brand-deep/50 lg:to-brand-deep/40" />
-      <div className="page-wrap relative grid items-center gap-8 py-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(20rem,26rem)] lg:gap-12 lg:py-16">
+      <div className="page-wrap relative grid items-center gap-6 py-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(15rem,19rem)] lg:gap-10 lg:py-12">
         <div>
           <h1 className="text-balance text-surface">
             <span className="block font-display text-[2.35rem] leading-[1.02] sm:text-5xl lg:text-6xl">

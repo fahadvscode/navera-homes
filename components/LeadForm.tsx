@@ -142,8 +142,13 @@ export function LeadForm({
   const fieldClass = stacked ? "field field-line" : "field";
 
   return (
-    <form onSubmit={onSubmit} onFocus={onFocus} noValidate className={stacked ? "relative grid gap-3" : "relative grid gap-4"}>
-      <div className={stacked ? "grid grid-cols-2 gap-x-3 gap-y-3" : "grid gap-4 md:grid-cols-2"}>
+    <form
+      onSubmit={onSubmit}
+      onFocus={onFocus}
+      noValidate
+      className={stacked ? "lead-form relative grid gap-2" : "lead-form relative grid max-w-2xl gap-3"}
+    >
+      <div className={stacked ? "grid grid-cols-2 gap-x-3 gap-y-2" : "grid gap-3 md:grid-cols-2"}>
         <Field label="First name" id={`${baseId}-first`} error={errors.first_name && "Enter your first name."}>
           <input id={`${baseId}-first`} className={fieldClass} autoComplete="given-name" {...register("first_name")} />
         </Field>
@@ -171,23 +176,23 @@ export function LeadForm({
       </div>
       {stacked ? (
         <fieldset>
-          <legend className="text-sm font-semibold">Are you a licensed real estate agent?</legend>
-          <div className="mt-2 flex gap-6">
-            <label className="flex items-center gap-2 text-sm">
+          <legend className="text-xs font-semibold">Are you a licensed real estate agent?</legend>
+          <div className="mt-1 flex gap-4">
+            <label className="flex items-center gap-1.5 text-xs">
               <input
                 type="radio"
                 name={`${baseId}-broker`}
-                className="h-5 w-5"
+                className="h-3.5 w-3.5"
                 checked={brokerAnswer === "yes"}
                 onChange={() => setBrokerAnswer("yes")}
               />
               Yes
             </label>
-            <label className="flex items-center gap-2 text-sm">
+            <label className="flex items-center gap-1.5 text-xs">
               <input
                 type="radio"
                 name={`${baseId}-broker`}
-                className="h-5 w-5"
+                className="h-3.5 w-3.5"
                 checked={brokerAnswer === "no"}
                 onChange={() => setBrokerAnswer("no")}
               />
@@ -196,17 +201,17 @@ export function LeadForm({
           </div>
         </fieldset>
       ) : (
-        <label className="flex items-start gap-3 text-sm leading-relaxed">
-          <input type="checkbox" className="mt-1 h-5 w-5" {...register("is_broker")} />
+        <label className="flex items-start gap-2 text-xs leading-snug">
+          <input type="checkbox" className="mt-0.5 h-3.5 w-3.5 shrink-0" {...register("is_broker")} />
           <span>Are you a licensed real estate agent?</span>
         </label>
       )}
-      <label className="flex items-start gap-3 text-sm leading-relaxed">
-        <input type="checkbox" className="mt-1 h-5 w-5" {...register("casl_consent")} />
+      <label className="flex items-start gap-2 text-[0.7rem] leading-snug">
+        <input type="checkbox" className="mt-0.5 h-3.5 w-3.5 shrink-0" {...register("casl_consent")} />
         <span>{CASL_CONSENT}</span>
       </label>
       {errors.casl_consent && (
-        <p className="text-sm font-semibold text-brand-deep">Consent is required to register.</p>
+        <p className="text-xs font-semibold text-brand-deep">Consent is required to register.</p>
       )}
       <div className="hp" aria-hidden="true">
         <label htmlFor={`${baseId}-website`}>Website</label>
@@ -215,7 +220,7 @@ export function LeadForm({
       <button type="submit" className={stacked ? "btn w-full" : "btn w-full md:w-auto"} disabled={pending}>
         {pending ? "Sending…" : "Get Priority Access"}
       </button>
-      <p role="alert" aria-live="assertive" className="min-h-6 text-sm font-semibold text-brand-deep">
+      <p role="alert" aria-live="assertive" className="min-h-4 text-xs font-semibold text-brand-deep">
         {formError}
       </p>
     </form>
@@ -235,12 +240,12 @@ function Field({
 }) {
   return (
     <div>
-      <label htmlFor={id} className="mb-1 block text-sm font-semibold">
+      <label htmlFor={id} className="mb-0.5 block text-xs font-semibold">
         {label} <span className="text-brand-accent-ink">*</span>
       </label>
       {children}
       {error && (
-        <p id={`${id}-error`} className="mt-1 text-sm text-brand-deep">
+        <p id={`${id}-error`} className="mt-1 text-xs text-brand-deep">
           {error}
         </p>
       )}
@@ -260,7 +265,7 @@ function Select({
 } & SelectHTMLAttributes<HTMLSelectElement>) {
   return (
     <div>
-      <label htmlFor={id} className="mb-1 block text-sm font-semibold">
+      <label htmlFor={id} className="mb-0.5 block text-xs font-semibold">
         {label}
       </label>
       <select id={id} className="field" {...props}>

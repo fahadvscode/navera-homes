@@ -35,9 +35,6 @@ export const MEDIA = {
   mapPointer: "/images/media/map-pointer.png",
   kitchen: "/images/media/shutterstock.jpg",
   digreenMark: "/images/media/digreen-favicon.svg",
-  facebook: "/images/media/social-facebook.png",
-  instagram: "/images/media/social-instagram.png",
-  linkedin: "/images/media/social-linkedin.png",
 } as const;
 
 export const AERIAL: SitePhoto = {
@@ -100,24 +97,6 @@ export const LIFESTYLE_PHOTOS: SitePhoto[] = [
     caption: "Stock lifestyle photograph of a family in a kitchen. It is not a Navera interior.",
   },
 ];
-
-export const BUILDER_SOCIAL = [
-  {
-    src: MEDIA.facebook,
-    label: "Digreen Homes on Facebook",
-    href: "https://www.facebook.com/Digreen-Homes-1847025138891186/",
-  },
-  {
-    src: MEDIA.instagram,
-    label: "Digreen Homes on Instagram",
-    href: "https://www.instagram.com/digreenhomesinc",
-  },
-  {
-    src: MEDIA.linkedin,
-    label: "Digreen Homes on LinkedIn",
-    href: "https://ca.linkedin.com/company/digreen-homes-gta",
-  },
-] as const;
 
 export const AREA_ICON_LINKS = [
   { src: MEDIA.connected, label: "Transit", href: "/location#transit" },
