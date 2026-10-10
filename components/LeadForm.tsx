@@ -139,25 +139,26 @@ export function LeadForm({
   }
 
   const stacked = variant === "hero";
+  const fieldClass = stacked ? "field field-line" : "field";
 
   return (
     <form onSubmit={onSubmit} onFocus={onFocus} noValidate className={stacked ? "relative grid gap-3" : "relative grid gap-4"}>
       <div className={stacked ? "grid grid-cols-2 gap-x-3 gap-y-3" : "grid gap-4 md:grid-cols-2"}>
         <Field label="First name" id={`${baseId}-first`} error={errors.first_name && "Enter your first name."}>
-          <input id={`${baseId}-first`} className="field" autoComplete="given-name" {...register("first_name")} />
+          <input id={`${baseId}-first`} className={fieldClass} autoComplete="given-name" {...register("first_name")} />
         </Field>
         <Field label="Last name" id={`${baseId}-last`} error={errors.last_name && "Enter your last name."}>
-          <input id={`${baseId}-last`} className="field" autoComplete="family-name" {...register("last_name")} />
+          <input id={`${baseId}-last`} className={fieldClass} autoComplete="family-name" {...register("last_name")} />
         </Field>
         <Field label="Email" id={`${baseId}-email`} error={errors.email && "Enter a valid email address."}>
-          <input id={`${baseId}-email`} className="field" type="email" autoComplete="email" {...register("email")} />
+          <input id={`${baseId}-email`} className={fieldClass} type="email" autoComplete="email" {...register("email")} />
         </Field>
         <Field
           label="Phone"
           id={`${baseId}-phone`}
           error={errors.phone && "Enter a phone number, 10 to 20 characters, using digits and + ( ) . -"}
         >
-          <input id={`${baseId}-phone`} className="field" type="tel" autoComplete="tel" {...register("phone")} />
+          <input id={`${baseId}-phone`} className={fieldClass} type="tel" autoComplete="tel" {...register("phone")} />
         </Field>
         {stacked ? null : (
           <>

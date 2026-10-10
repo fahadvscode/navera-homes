@@ -193,6 +193,19 @@
   color: var(--color-text-primary);
 }
 
+.field-line {
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  border-radius: 0;
+  background: transparent;
+  padding-inline: 0;
+}
+
+::selection {
+  background: var(--color-brand-primary);
+  color: var(--color-surface);
+}
+
 .hp {
   position: absolute;
   left: -10000px;
