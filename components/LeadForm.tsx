@@ -121,7 +121,6 @@ export function LeadForm({
     void handleSubmit(onValid)();
   }
 
-  const stacked = variant === "hero";
   const fieldClass = "field";
 
   return (
@@ -129,9 +128,10 @@ export function LeadForm({
       onSubmit={onSubmit}
       onFocus={onFocus}
       noValidate
-      className={stacked ? "lead-form relative grid gap-2" : "lead-form relative grid max-w-2xl gap-3"}
+      data-variant={variant}
+      className="lead-form relative grid max-w-2xl gap-3.5"
     >
-      <div className={stacked ? "grid grid-cols-2 gap-x-3 gap-y-2" : "grid gap-3 md:grid-cols-2"}>
+      <div className="grid grid-cols-2 gap-x-3 gap-y-3">
         <Field label="First name" id={`${baseId}-first`} error={errors.first_name && "Enter your first name."}>
           <input id={`${baseId}-first`} className={fieldClass} autoComplete="given-name" {...register("first_name")} />
         </Field>
@@ -150,23 +150,23 @@ export function LeadForm({
         </Field>
       </div>
       <fieldset>
-        <legend className="text-xs font-semibold">Are you a licensed real estate agent?</legend>
-        <div className="mt-1 flex gap-4">
-          <label className="flex items-center gap-1.5 text-xs">
+        <legend className="mb-1.5 text-xs font-medium text-text-muted">Are you a licensed real estate agent?</legend>
+        <div className="grid grid-cols-2 gap-2">
+          <label className={brokerAnswer === "yes" ? "choice choice-on" : "choice"}>
             <input
               type="radio"
               name={`${baseId}-broker`}
-              className="h-3.5 w-3.5"
+              className="sr-only"
               checked={brokerAnswer === "yes"}
               onChange={() => setBrokerAnswer("yes")}
             />
             Yes
           </label>
-          <label className="flex items-center gap-1.5 text-xs">
+          <label className={brokerAnswer === "no" ? "choice choice-on" : "choice"}>
             <input
               type="radio"
               name={`${baseId}-broker`}
-              className="h-3.5 w-3.5"
+              className="sr-only"
               checked={brokerAnswer === "no"}
               onChange={() => setBrokerAnswer("no")}
             />
@@ -174,8 +174,8 @@ export function LeadForm({
           </label>
         </div>
       </fieldset>
-      <label className="flex items-start gap-2 text-[0.7rem] leading-snug">
-        <input type="checkbox" className="mt-0.5 h-3.5 w-3.5 shrink-0" {...register("casl_consent")} />
+      <label className="flex items-start gap-2 text-xs leading-snug text-text-muted">
+        <input type="checkbox" className="mt-0.5 h-4 w-4 shrink-0 accent-brand-primary" {...register("casl_consent")} />
         <span>{CASL_CONSENT}</span>
       </label>
       {errors.casl_consent && (
@@ -185,12 +185,16 @@ export function LeadForm({
         <label htmlFor={`${baseId}-website`}>Website</label>
         <input id={`${baseId}-website`} tabIndex={-1} autoComplete="off" {...register("website")} />
       </div>
-      <button type="submit" className={stacked ? "btn w-full" : "btn w-full md:w-auto"} disabled={pending}>
+      <button type="submit" className="btn w-full" disabled={pending}>
         {pending ? "Sending…" : "Get Priority Access"}
       </button>
-      <p role="alert" aria-live="assertive" className="form-alert min-h-4 text-xs font-semibold text-brand-deep">
-        {formError}
-      </p>
+      {formError ? (
+        <p role="alert" aria-live="assertive" className="form-alert text-xs font-semibold text-brand-deep">
+          {formError}
+        </p>
+      ) : (
+        <p role="alert" aria-live="assertive" className="sr-only" />
+      )}
     </form>
   );
 }
@@ -208,7 +212,7 @@ function Field({
 }) {
   return (
     <div>
-      <label htmlFor={id} className="mb-0.5 block text-xs font-semibold">
+      <label htmlFor={id} className="mb-1 block text-xs font-medium text-text-muted">
         {label} <span className="text-brand-accent-ink">*</span>
       </label>
       {children}
