@@ -42,7 +42,7 @@ export function Hero() {
             </div>
             <div>
               <dt className="text-[0.7rem] uppercase tracking-wide text-text-muted">Lots</dt>
-              <dd className="font-display text-base leading-tight text-brand-primary">38' & 41'</dd>
+              <dd className="font-display text-base leading-tight text-brand-primary">{"38' & 41'"}</dd>
             </div>
             <div>
               <dt className="text-[0.7rem] uppercase tracking-wide text-text-muted">Place</dt>
