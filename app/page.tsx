@@ -1,10 +1,13 @@
+import Image from "next/image";
 import Link from "next/link";
+import { AreaIcons } from "@/components/AreaIcons";
 import { ConfirmedVsTba } from "@/components/ConfirmedVsTba";
 import { FaqList } from "@/components/FaqList";
 import { Hero } from "@/components/Hero";
 import { JsonLd } from "@/components/JsonLd";
 import { LeadForm } from "@/components/LeadForm";
 import { LotWidthDiagram } from "@/components/LotWidthDiagram";
+import { PhotoFigure } from "@/components/PhotoFigure";
 import { QuickFacts } from "@/components/QuickFacts";
 import { SpecDisclaimer } from "@/components/Disclaimer";
 import { FadeIn } from "@/components/FadeIn";
@@ -22,6 +25,7 @@ import {
   pageMeta,
 } from "@/lib/content";
 import { developerLd, faqLd, orgLd, projectLd, websiteLd } from "@/lib/schema";
+import { LIFESTYLE_PHOTOS, MEDIA } from "@/lib/media";
 import { RichText } from "@/components/RichText";
 
 export const metadata = pageMeta(PAGES.home);
@@ -73,11 +77,16 @@ export default function HomePage() {
           <h2 className="font-display text-3xl text-brand-primary md:text-4xl">
             About Navera at Mayfield Village
           </h2>
-          {HOME_ABOUT.map((paragraph) => (
-            <p key={paragraph.slice(0, 32)} className="measure mt-4 leading-[1.7]">
-              {paragraph}
-            </p>
-          ))}
+          <div className="mt-6 grid items-start gap-8 lg:grid-cols-[1.4fr_0.8fr]">
+            <div>
+              {HOME_ABOUT.map((paragraph) => (
+                <p key={paragraph.slice(0, 32)} className="measure mt-4 leading-[1.7] first:mt-0">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+            <PhotoFigure photo={LIFESTYLE_PHOTOS[0]} />
+          </div>
         </div>
       </section>
       <FadeIn>
@@ -136,16 +145,55 @@ export default function HomePage() {
           <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {NEIGHBOURHOOD.map((card) => (
               <article key={card.title} className="card p-5">
-                <h3 className="text-lg text-brand-primary">{card.title}</h3>
+                <div className="flex gap-2">
+                  {card.icons.map((src) => (
+                    <Image
+                      key={src}
+                      src={src}
+                      alt=""
+                      width={card.darkIcon ? 416 : 134}
+                      height={card.darkIcon ? 104 : 134}
+                      className={
+                        card.darkIcon
+                          ? "h-12 w-12 rounded-full bg-brand-deep object-cover"
+                          : "h-12 w-12"
+                      }
+                    />
+                  ))}
+                </div>
+                <h3 className="mt-3 text-lg text-brand-primary">{card.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed">{card.text}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
+      <AreaIcons />
       <section className="section bg-surface-alt">
         <div className="page-wrap">
           <h2 className="font-display text-3xl text-brand-primary md:text-4xl">About the builder</h2>
+          <div className="mt-6 flex flex-wrap items-center gap-6">
+            <Image
+              src={MEDIA.digreenColour}
+              alt="Digreen Homes"
+              width={896}
+              height={331}
+              className="h-16 w-auto"
+            />
+            <Image
+              src={MEDIA.digreenStacked}
+              alt=""
+              width={236}
+              height={261}
+              className="h-16 w-auto"
+            />
+            <span className="inline-flex bg-brand-deep p-3">
+              <img src={MEDIA.digreenMark} alt="" width={48} height={52} className="h-12 w-auto" />
+            </span>
+          </div>
+          <p className="mt-3 text-sm text-text-muted">
+            Digreen Homes marks, shown to identify the builder.
+          </p>
           <RichText text={BUILDER_COPY} />
         </div>
       </section>

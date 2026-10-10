@@ -80,7 +80,7 @@ export const PAGES = {
     path: "/gallery",
     title: "Navera at Mayfield Village Renderings & Site Plan",
     description:
-      "Renderings and the site plan for Navera at Mayfield Village will be added when released by Digreen Homes. Register to be notified.",
+      "Area illustration and photographs for Navera at Mayfield Village. Floor plans and a surveyed site plan are still to be announced.",
     h1: "Navera at Mayfield Village Gallery",
   },
   faq: {
@@ -210,30 +210,57 @@ export const PRIORITY_BENEFITS = [
   "Registrant-only opportunities",
 ];
 
-export const NEIGHBOURHOOD = [
+export const NEIGHBOURHOOD: {
+  title: string;
+  text: string;
+  icons: string[];
+  darkIcon?: boolean;
+}[] = [
   {
     title: "Parks and trails",
+    icons: ["/images/media/parks.png"],
     text: "The builder points to Sesquicentennial Park, the Chinguacousy Trail System, and Torbram Sandalwood Community Park.",
   },
   {
     title: "Shopping",
+    icons: ["/images/media/shopping.png"],
     text: "The builder cites Trinity Common Mall, SmartCentres Brampton Northeast, Bramalea City Centre, and plazas on Airport Road, Bramalea Road, Torbram Road, and Bovaird Drive.",
   },
   {
+    title: "Food",
+    icons: ["/images/media/food.png"],
+    text: "Third-party neighbourhood notes name grocery stores in the wider area, including FreshCo and Fortinos. A specific store should be confirmed in person.",
+  },
+  {
+    title: "Services",
+    icons: ["/images/media/service.png"],
+    text: "The builder cites plazas on Airport Road, Bramalea Road, Torbram Road, and Bovaird Drive for everyday errands.",
+  },
+  {
     title: "Schools",
+    icons: ["/images/media/school.png"],
     text: "The builder cites 23 public schools, 8 Catholic schools, private options, French Immersion, and International Baccalaureate and vocational programs, including newer schools serving growth areas.",
   },
   {
     title: "Health and recreation",
+    icons: ["/images/media/health.png", "/images/media/recreation.png"],
     text: "Save Max Sports Centre, Brampton Civic Hospital, community parks, and sports fields are named in the builder's location notes, along with walking and cycling trails.",
   },
   {
     title: "Highways",
+    icons: ["/images/media/transportation.png"],
     text: "Highway 410 is described as minutes away, with Highway 407 further out. The builder also cites future Highway 413 as a long-term connection. Its timing is outside the builder's control.",
   },
   {
     title: "Transit",
+    icons: ["/images/media/connected.png"],
+    darkIcon: true,
     text: "Brampton Transit and Züm operate along major corridors. Bramalea GO Station, at Steeles Avenue and Bramalea Road, has rail service toward downtown Toronto.",
+  },
+  {
+    title: "Worship",
+    icons: ["/images/media/worship.png"],
+    text: "The builder's area illustration labels Guruvayurappan Temple near Torbram Road. Hours and the street address are not confirmed on this page.",
   },
 ];
 
@@ -560,7 +587,7 @@ export const LOCATION_BLOCKS: Block[] = [
 ];
 
 export const GALLERY_COPY =
-  "Official renderings and the site plan have not been published on this independent site. We add them as soon as the builder releases them.";
+  "The area illustration and photographs on this page come from Digreen Homes' Navera artwork. Lifestyle pictures are not photographs of a Navera home. Floor plans and a surveyed site plan are still to be announced.";
 
 export const BLOG_LEDE =
   "Pre-construction homes in Brampton are new homes bought from a builder before or during construction, usually with a deposit schedule and a closing date set in the agreement of purchase and sale. Detached communities such as Navera at Mayfield Village, which offers 38-foot and 41-foot lots at Countryside Drive and Torbram Road, are typically launched through registrant lists before public release.";

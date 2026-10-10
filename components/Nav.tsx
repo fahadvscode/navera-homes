@@ -1,16 +1,21 @@
+import Image from "next/image";
 import Link from "next/link";
 import { NAV } from "@/lib/content";
+import { MEDIA } from "@/lib/media";
 
 export function Nav() {
   return (
     <header className="border-b border-border bg-surface">
       <div className="page-wrap flex items-center justify-between gap-6 py-4">
         <Link href="/" aria-label="Navera at Mayfield Village, home" className="shrink-0">
-          <span className="block font-display text-[1.7rem] leading-none text-brand-primary">Navera</span>
-          <span className="mt-1 block text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-text-muted">
-            at Mayfield Village
-          </span>
-          <span className="mt-2 block h-px w-10 bg-brand-accent" aria-hidden="true" />
+          <Image
+            src={MEDIA.naveraBlk}
+            alt="Navera at Mayfield Village"
+            width={649}
+            height={165}
+            priority
+            className="h-11 w-auto"
+          />
         </Link>
         <details className="relative md:hidden">
           <summary className="cursor-pointer list-none rounded-[10px] border border-border px-3 py-2 text-sm font-semibold text-brand-primary">

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Blocks } from "@/components/Blocks";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -5,8 +6,10 @@ import { DriveTimesTable } from "@/components/DriveTimesTable";
 import { JsonLd } from "@/components/JsonLd";
 import { LocationMap } from "@/components/LocationMap";
 import { LocationSchematic } from "@/components/LocationSchematic";
+import { PhotoFigure } from "@/components/PhotoFigure";
 import { RegisterCta } from "@/components/RegisterCta";
 import { FAQS, LOCATION_BLOCKS, PAGES, pageMeta } from "@/lib/content";
+import { AERIAL, AREA_PHOTOS, MEDIA } from "@/lib/media";
 import { breadcrumbLd, webPageLd } from "@/lib/schema";
 
 export const metadata = pageMeta(PAGES.location);
@@ -43,11 +46,36 @@ export default function LocationPage() {
             after={{
               map: (
                 <>
-                  <LocationMap />
+                  <div className="mt-6 flex flex-col items-start gap-6 md:flex-row">
+                    <Image
+                      src={MEDIA.mapPointer}
+                      alt="Navera at Mayfield Village map marker"
+                      width={1110}
+                      height={1110}
+                      className="h-auto w-36 shrink-0"
+                    />
+                    <div className="min-w-0 flex-1">
+                      <LocationMap />
+                    </div>
+                  </div>
+                  <div className="mt-6">
+                    <PhotoFigure photo={AERIAL} />
+                  </div>
                   <LocationSchematic title="Navera at Mayfield Village location schematic at Countryside Drive and Torbram Road" />
                 </>
               ),
               "drive-times": <DriveTimesTable />,
+              transit: (
+                <div className="mt-6 max-w-md">
+                  <PhotoFigure photo={AREA_PHOTOS[3]} />
+                </div>
+              ),
+              parks: (
+                <div className="mt-6 grid gap-4 md:grid-cols-2">
+                  <PhotoFigure photo={AREA_PHOTOS[0]} />
+                  <PhotoFigure photo={AREA_PHOTOS[1]} />
+                </div>
+              ),
               schools: (
                 <p className="measure mt-4 leading-[1.7]">
                   School questions are also in the{" "}

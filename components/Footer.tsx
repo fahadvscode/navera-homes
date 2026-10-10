@@ -1,5 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import { DISPLAY_DATE, NAV } from "@/lib/content";
+import { BUILDER_SOCIAL } from "@/lib/media";
 import { IndependenceDisclaimer, SpecDisclaimer } from "./Disclaimer";
 import { LeadForm } from "./LeadForm";
 import { FooterFormGate } from "./FooterFormGate";
@@ -42,6 +44,18 @@ export function Footer() {
             ))}
           </ul>
         </nav>
+        <div className="mt-8">
+          <p className="text-sm font-semibold">Digreen Homes</p>
+          <ul className="mt-3 flex gap-3">
+            {BUILDER_SOCIAL.map((item) => (
+              <li key={item.href}>
+                <a href={item.href} target="_blank" rel="noopener noreferrer">
+                  <Image src={item.src} alt={item.label} width={30} height={30} className="h-8 w-8" />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
         <p className="mt-8 text-sm font-semibold">Last updated: {DISPLAY_DATE}</p>
         <div className="mt-4 space-y-3">
           <IndependenceDisclaimer />

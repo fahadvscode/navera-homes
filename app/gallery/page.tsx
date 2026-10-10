@@ -1,11 +1,15 @@
 import Image from "next/image";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
+import { PhotoFigure } from "@/components/PhotoFigure";
 import { RegisterCta } from "@/components/RegisterCta";
 import { GALLERY_COPY, LOCATION_DIAGRAM, LOT_DIAGRAM, PAGES, pageMeta } from "@/lib/content";
+import { AERIAL, AREA_PHOTOS, LIFESTYLE_PHOTOS } from "@/lib/media";
 import { breadcrumbLd, imageLd, webPageLd } from "@/lib/schema";
 
 export const metadata = pageMeta(PAGES.gallery);
+
+const GALLERY = [AERIAL, ...AREA_PHOTOS, ...LIFESTYLE_PHOTOS];
 
 export default function GalleryPage() {
   return (
@@ -21,6 +25,9 @@ export default function GalleryPage() {
             { name: "Navera at Mayfield Village", path: "/" },
             { name: "Gallery", path: "/gallery" },
           ]),
+          ...GALLERY.map((photo) =>
+            imageLd({ path: photo.src, name: photo.alt, caption: photo.caption }),
+          ),
           imageLd(LOT_DIAGRAM),
           imageLd(LOCATION_DIAGRAM),
         ]}
@@ -36,18 +43,22 @@ export default function GalleryPage() {
       </header>
       <section className="section">
         <div className="page-wrap">
-          <h2 className="font-display text-3xl text-brand-primary">What is on this page today</h2>
+          <h2 className="font-display text-3xl text-brand-primary">Area illustration and photographs</h2>
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            {GALLERY.map((photo) => (
+              <PhotoFigure key={photo.src} photo={photo} />
+            ))}
+          </div>
+          <h2 className="mt-14 font-display text-3xl text-brand-primary">Diagrams drawn for this page</h2>
           <p className="measure mt-4 leading-[1.7]">
-            Navera Brampton renderings are not hosted here. There is no exterior, interior, or site
-            plan image from Digreen Homes on this independent site. The two drawings below were made
-            for this page. One compares the approximate 38-foot and 41-foot lot widths. The other is
-            a location schematic for Countryside Drive and Torbram Road. Neither is a photograph and
-            neither is a builder rendering.
+            The two drawings below were made for this page. One compares the approximate 38-foot and
+            41-foot lot widths. The other is a location schematic for Countryside Drive and Torbram
+            Road. Neither is a photograph and neither is a builder rendering.
           </p>
           <figure className="card mt-8 p-4">
             <Image
               src={LOT_DIAGRAM.path}
-              alt="Navera Brampton renderings are not released; this diagram compares approximate 38-foot and 41-foot lots at Navera at Mayfield Village"
+              alt="Diagram comparing approximate 38-foot and 41-foot lots at Navera at Mayfield Village"
               width={640}
               height={280}
               unoptimized
@@ -57,7 +68,7 @@ export default function GalleryPage() {
           <figure className="card mt-6 p-4">
             <Image
               src={LOCATION_DIAGRAM.path}
-              alt="Navera at Mayfield Village photos are not released; this schematic shows Countryside Drive and Torbram Road"
+              alt="Schematic of Countryside Drive and Torbram Road"
               width={640}
               height={360}
               unoptimized
@@ -68,7 +79,7 @@ export default function GalleryPage() {
       </section>
       <RegisterCta>
         <p className="measure mt-4 leading-relaxed text-text-on-dark">
-          Register to be notified when the builder releases renderings and a site plan.
+          Register to be notified when the builder releases floor plans and a site plan.
         </p>
       </RegisterCta>
     </>
